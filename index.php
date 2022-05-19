@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+
     <link rel="stylesheet" href="index.css"/> 
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -53,6 +53,7 @@
             </div>
         </div>
     </nav>
+
     <!--Log In Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -83,6 +84,7 @@
     </div>
   </div>
 </div>
+
 <!--Sign Up Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -118,6 +120,7 @@
     </div>
   </div>
 </div>
+
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -139,121 +142,82 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div class="container my-4">
+<?php
+
+ $servername="localhost";
+ $username="root";
+ $password="";
+ $database_name="db";
+ $conn=mysqli_connect($servername,$username,$password,$database_name);
+ $query = "SELECT * FROM drugs";     
+ $rs_result = mysqli_query ($conn, $query);    
+
+ while ($data = mysqli_fetch_array($rs_result)){ 
+   if($data['id']%2!=0){
+  ?>     
+       <div class="container my-4">
         <div class="row mb-2">
             <div class="col-md-6">
               <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block text-primary">16 tablets </strong>
-                  <h3 class="mb-0">Bistol paracetamol 500mg</h3>
+                <strong class="d-inline-block text-primary"><?php echo $data['tablet']??''; ?> tablets </strong>
+                  <h3 class="mb-0"><?php echo $data['Name']??''; ?></h3>
                   <strong class="d-inline-block mb-2 text-danger">Rs 20</strong>
                   <div class="mb-1 text-muted">Dosage</div>
-                  <p class="card-text mb-auto">one or two 500mg tablets up to 4 times in 24 hours</p>
+                  <p class="card-text mb-auto"><?php echo $data['description']??''; ?></p>
                   <button type="button" class="btn btn-success">Add to Cart</button>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                  <img class="bd-placeholder-img" width="200" height="250" src="paracetamol.jpeg" alt="">
+                  <img class="bd-placeholder-img" width="200" height="250" src="image/<?php echo $data['img'].'.jpeg' ?>" alt="">
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+           
+            <?php 
+            
+} else if($data['id']%2==0) { ?>
+<div class="col-md-6">
               <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block text-primary">24 tablets</strong>
-                  <h3 class="mb-0">Disprin 500mg</h3>
-                  <strong class="d-inline-block mb-2 text-danger">Rs 26</strong>
+                <strong class="d-inline-block text-primary"><?php echo $data['tablet']??''; ?> tablets </strong>
+                  <h3 class="mb-0"><?php echo $data['Name']??''; ?></h3>
+                  <strong class="d-inline-block mb-2 text-danger">Rs 20</strong>
                   <div class="mb-1 text-muted">Dosage</div>
-                  <p class="mb-auto">maximum of 13 tablets in 24 hours</p>
+                  <p class="card-text mb-auto"><?php echo $data['description']??''; ?></p>
                   <button type="button" class="btn btn-success">Add to Cart</button>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                <img class="bd-placeholder-img" width="200" height="250" src="disprin.jpeg" alt="">
+                <img class="bd-placeholder-img" width="200" height="250" src="image/<?php echo $data['img'].'.jpeg' ?>" alt="">
                 </div>
               </div>
             </div>
           </div>
     </div>
-    <div class="container my-4">
-        <div class="row mb-2">
-            <div class="col-md-6">
-              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block text-primary">200 tablets </strong>
-                  <h3 class="mb-0">Norfloxacin 400</h3>
-                  <strong class="d-inline-block mb-2 text-danger">Rs 500</strong>
-                  <div class="mb-1 text-muted">Dosage</div>
-                  <p class="card-text mb-auto">400 mg every 12 hours for 3 to 21 days</p>
-                  <button type="button" class="btn btn-success">Add to Cart</button>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                  <img class="bd-placeholder-img" width="200" height="250" src="norfloxacin.jpeg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block text-primary">50 tablets</strong>
-                  <h3 class="mb-0">Combiflam</h3>
-                  <strong class="d-inline-block mb-2 text-danger">Rs 120</strong>
-                  <div class="mb-1 text-muted">Dosage</div>
-                  <p class="mb-auto">1 tablet 3 times a day, or as directed by your physician.</p>
-                  <button type="button" class="btn btn-success">Add to Cart</button>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                <img class="bd-placeholder-img" width="200" height="250" src="combiflam.jpeg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
-    <div class="container my-4">
-        <div class="row mb-2">
-            <div class="col-md-6">
-              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block text-primary">20 tablets</strong>
-                  <h3 class="mb-0">Bell's ibuprofen 200mg</h3>
-                  <strong class="d-inline-block mb-2 text-danger">Rs 40</strong>
-                  <div class="mb-1 text-muted">Dosage</div>
-                  <p class="card-text mb-auto">Maximum 4 tablets in 24 hours</p>
-                  <button type="button" class="btn btn-success">Add to Cart</button>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                  <img class="bd-placeholder-img" width="200" height="250" src="ibuprofen.jpeg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block text-primary">65 tablets</strong>
-                  <h3 class="mb-0">Zantac 150</h3>
-                  <strong class="d-inline-block mb-2 text-danger">Rs 100</strong>
-                  <div class="mb-1 text-muted">Dosage</div>
-                  <p class="mb-auto">4-8 mg/kg orally every 12 hours</p>
-                  <button type="button" class="btn btn-success">Add to Cart</button>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                <img class="bd-placeholder-img" width="200" height="250" src="zantac.jpeg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
+
+<?php
+}
+
+}?>
+
+
+
 <!-- Optional JavaScript; choose one of the two! -->
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
